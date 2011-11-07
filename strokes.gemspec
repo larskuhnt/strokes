@@ -4,13 +4,14 @@ $:.unshift lib unless $:.include?(lib)
 
 Gem::Specification.new do |s|
   s.name        = "strokes"
-  s.version     = '0.1'
+  s.version     = '0.9'
   s.platform    = Gem::Platform::RUBY
+  s.date        = Time.now.to_date.to_s
   s.authors     = ["Lars Kuhnt"]
   s.email       = ["lars.kuhnt@gmail.com"]
   s.homepage    = "http://github.com/larskuhnt/strokes"
   s.summary     = "Ruby wrapper for the awsome postscriptbarcode library"
-  s.description = "Generates PNG images of barcodes (i.e. EAN13, QR-Code, ISBN)"
+  s.description = "Generates PNG images of barcodes. Currently supports EAN8, EAN13, QR-Code, ISBN, CODE39, CODE128, UPCA, UPCE"
  
   s.required_rubygems_version = ">= 1.3.6"
   
