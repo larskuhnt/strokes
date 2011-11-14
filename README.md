@@ -1,13 +1,13 @@
 # Strokes
 
-A ruby wrapper of the awsome [postscriptbarcode](http://code.google.com/p/postscriptbarcode/) library.
+A ruby wrapper of the awesome [postscriptbarcode](http://code.google.com/p/postscriptbarcode/) library.
 
 Note: currently only PNG images are supported.
 
 ## External Dependencies
 
 - You need to have [ghostscript](http://www.ghostscript.com/) installed and the `gs` command in your PATH.
-- If you want to use the `width` option you also need the `mogrify` command in your PATH, which is part of the [imagemagick](http://www.imagemagick.org) library.
+- You also need the `mogrify` command in your PATH, which is part of the [imagemagick](http://www.imagemagick.org) library.
 
 ## Install
 

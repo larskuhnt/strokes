@@ -1,18 +1,13 @@
 require 'spec_helper'
 require 'strokes/active_record'
 
-class TestModel
+setup_database
+
+class Person < ActiveRecord::Base
   
-  include ActiveRecord::Callbacks
   include Strokes::ActiveRecord
   
   has_barcode :code_type, :code_value, { :thumb => 200 }
-  
-  attr_accessor :id
-  
-  def initialize(id = 1)
-    @id = id
-  end
   
   def code_type
     :qrcode
@@ -22,24 +17,16 @@ class TestModel
     "http://www.barcode.test/123456"
   end
   
-  def save
-    run_callbacks(:create)
-  end
-  
-  def destroy
-    run_callbacks(:destroy)
-  end
-  
 end
 
 describe ActiveRecord do
   
   before do
-    @model = TestModel.new
+    @model = Factory(:person)
   end
   
   after(:all) do
-    FileUtils.rm_rf(TestModel.new.barcode_path)
+    FileUtils.rm_rf(Person.new.barcode_path)
   end
   
   describe "#save" do
@@ -73,14 +60,14 @@ describe ActiveRecord do
     end
     
     it "should not delete the barcodes of other models" do
-      @model1 = TestModel.new(2)
+      @model1 = Factory(:person)
       @model1.save
       @model.destroy
       File.exists?(@model1.barcode_filename).should be_true
     end
     
     it "should not delete the barcodes of models with the same first character" do
-      @model1 = TestModel.new(11)
+      @model1 = Factory(:person, :id => @model.id*100)
       @model1.save
       @model.destroy
       File.exists?(@model1.barcode_filename).should be_true

@@ -10,13 +10,15 @@ Gem::Specification.new do |s|
   s.authors     = ["Lars Kuhnt"]
   s.email       = ["lars.kuhnt@gmail.com"]
   s.homepage    = "http://github.com/larskuhnt/strokes"
-  s.summary     = "Ruby wrapper for the awsome postscriptbarcode library"
+  s.summary     = "Ruby wrapper for the awesome postscriptbarcode library"
   s.description = "Generates PNG images of barcodes. Currently supports EAN8, EAN13, QR-Code, ISBN, CODE39, CODE128, UPCA, UPCE"
  
   s.required_rubygems_version = ">= 1.3.6"
   
   s.add_dependency 'subexec'
   s.add_development_dependency "rspec"
+  s.add_development_dependency "sqlite3"
+  
  
   s.files        = Dir.glob("lib/**/*") + %w(LICENSE README.md CHANGELOG.md ROADMAP.md)
   s.require_path = 'lib'

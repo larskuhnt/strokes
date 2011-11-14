@@ -3,4 +3,7 @@
 .rbenv-version
 tmp
 *.gem
+vendor
+db
+log
 
