@@ -45,6 +45,11 @@ describe Barcode do
   
   it "should generate a code128 png file" do
     Barcode.new(:code128, 'Count0123456789!').save(@filename)
+    # lambda { File.unlink(@filename) }.should_not raise_error
+  end
+  
+  it "should generate a itf png file" do
+    Barcode.new(:itf, '0003355865001207').save(@filename)
     lambda { File.unlink(@filename) }.should_not raise_error
   end
   

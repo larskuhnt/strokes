@@ -2,7 +2,7 @@ require 'subexec'
 
 module Strokes
   
-  VALID_SYMBOLS = [:qrcode, :code39, :code128, :ean8, :ean13, :isbn, :upca, :upce]
+  VALID_SYMBOLS = [:qrcode, :code39, :code128, :ean8, :ean13, :isbn, :upca, :upce, :itf]
     
   class Barcode
   
@@ -41,12 +41,13 @@ module Strokes
     private
   
     def ps_commands(code_options, options = {})
+      symbol = options[:symbol] ? options[:symbol] : @symbol
     <<-PS
       <</Orientation 1>> setpagedevice
       #{options[:translate] || '100 680'} translate
       #{options[:rotate] || '-90'} rotate
       #{options[:scale] || '6 6'} scale
-      0 0 moveto (#{@content}) (#{code_options.join(' ')}) /#{@symbol} /uk.co.terryburton.bwipp findresource exec
+      0 0 moveto (#{@content}) (#{code_options.join(' ')}) /#{symbol} /uk.co.terryburton.bwipp findresource exec
       showpage
     PS
     end
@@ -82,7 +83,10 @@ module Strokes
     def code128
       ps_commands(['includetext', @options], :scale => '4 4', :translate => '150 750')
     end
-  
+    
+    def itf
+      ps_commands(['includecheck', 'includetext', @options], :scale => '3 3', :symbol => 'interleaved2of5')
+    end
   end
 
 end
