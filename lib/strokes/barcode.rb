@@ -85,7 +85,7 @@ module Strokes
     end
     
     def itf
-      ps_commands(['includecheck', 'includetext', @options], :scale => '3 3', :symbol => 'interleaved2of5')
+      ps_commands(['includetext', @options], :scale => '4 4', :symbol => 'interleaved2of5')
     end
   end
 
