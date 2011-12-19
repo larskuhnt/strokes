@@ -4,7 +4,7 @@ $:.unshift lib unless $:.include?(lib)
 
 Gem::Specification.new do |s|
   s.name        = "strokes"
-  s.version     = '0.9.1'
+  s.version     = '0.9.2'
   s.platform    = Gem::Platform::RUBY
   s.date        = Time.now.to_date.to_s
   s.authors     = ["Lars Kuhnt"]
