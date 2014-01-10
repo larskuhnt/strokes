@@ -27,12 +27,9 @@ module Strokes
       sub = Subexec.run "gs #{gs_options.join(" ")} #{barcode_ps} -c '#{ps}'"
       raise(GhostScriptError, sub.output) unless sub.exitstatus == 0
       resize_method = (ps =~ /includetext/ ? "-scale" : "-sample")
-      im_options = [
-        "-trim",
-        "-bordercolor white",
-        "-border 10%",
-        options[:width] ? "#{resize_method} #{options[:width]}" : nil
-      ].compact
+      im_options = ["-trim"]
+      im_options += ["-bordercolor white", "-border 10%"] if options[:border] != false
+      im_options << "#{resize_method} #{options[:width]}" if options[:width]
       sub = Subexec.run "mogrify #{im_options.join(' ')} #{filename}"
       raise(ImageMagickError, sub.output) unless sub.exitstatus == 0
       File.open(filename, 'r')
